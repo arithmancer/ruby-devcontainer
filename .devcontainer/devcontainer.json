@@ -1,0 +1,63 @@
+{
+	"name": "Ruby devcontainer",
+	"build": {
+		"context": ".",
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"eamodio.gitlens",
+				"github.vscode-pull-request-github",
+				"shopify.ruby-lsp",
+                "streetsidesoftware.code-spell-checker"
+			],
+			"settings": {
+				"cSpell": {
+					"ignoreWords": [
+						"eamodio"
+					],
+					"language": "en-GB",
+					"words": [
+						"devcontainer",
+						"devcontainers",
+						"linters",
+						"rubocop"
+					]
+				},
+				"gitlens.plusFeatures.enabled": false,
+				"rubyLsp": {
+                    "formatter": "auto",
+                    "linters": ["rubocop"],
+                    "rubyVersionManager": {
+                        "identifier": "none"
+                    },
+                    "testLibrary": "rspec"
+                },
+                "[ruby]": {
+                    "editor": {
+                        "defaultFormatter": "shopify.ruby-lsp",
+                        "formatOnSave": true, 
+                        "tabSize": 2,
+                        "insertSpaces": true,
+                        "semanticHighlighting.enabled": true,
+                        "formatOnType": true
+                    }
+                },
+				"[shellscript]": {
+					"editor": {
+						"formatOnSave": true,
+						"tabSize": 2,
+						"insertSpaces": true,
+						"semanticHighlighting.enabled": true,
+						"formatOnType": true
+					}
+				}
+			}
+		}
+	},
+	"postCreateCommand": ".devcontainer/setup.sh CREATE",
+	"postStartCommand": ".devcontainer/setup.sh START",
+	"postAttachCommand": ".devcontainer/setup.sh ATTACH",
+	"waitFor": "postStartCommand"
+}
